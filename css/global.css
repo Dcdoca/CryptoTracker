@@ -16,6 +16,21 @@ button, input, textarea, a {
     outline: 0;
 }
 
-a{
-    text-decoration: none;
+a {
+    text-decoration: none; /* Remove o sublinhado dos links */
+}
+
+p {
+    color: #fff; /* Cor do texto dos parágrafos */
+    font-size: 1.2em; /* Tamanho da fonte dos parágrafos */
+    line-height: 1.6em; /* Altura da linha dos parágrafos */
+    margin-left: 20px; /* Margem esquerda dos parágrafos */
+}
+
+h2 {
+    color: rgba(0, 186, 56, 1); /* Cor do texto dos títulos */
+    font-size: 1.6em; /* Tamanho da fonte dos títulos */
+    line-height: 1.2em; /* Altura da linha dos títulos */
+    margin-top: 10px; /* Margem superior dos títulos */
+    text-align: center; /* Alinha o texto dos títulos ao centro */
 }

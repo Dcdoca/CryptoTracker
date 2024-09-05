@@ -1,33 +1,75 @@
+.site-container {
+    width: 90%;
+    margin: 100px auto 0;
+    /* border-radius: 8px; */
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    border: 1px solid;
+    border-image: linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(0, 0, 0, 0) 50%) 1;
+}
+
+.backdrop-coin {
+    background-image: url(../img/coin.webp);
+    height: 100px;
+    width: 100px;
+    position: absolute;
+}
+
+#c1 {
+    left: 45px;
+    top: 450px;
+    z-index: -1;
+}
+
+#c2 {
+    top: 50px;
+    left: 900px;
+    transform: rotate(-70deg);
+}
+
+#c3 {
+    top: 650px;
+    right: 200px;
+    transform: rotate(70deg);
+}
+
+#c4 {
+    top: 300px;
+    right: 500px;
+    transform: rotate(160deg);
+    z-index: -1;
+}
+
 main {
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 100vh;
+    /* margin: auto; */
 }
 .header {
     width: 100%;
     padding: 24px 32px;
-    height: 10vh;
+    height: 10%;
     background: linear-gradient(to right,rgba(68,70,69,0.5),rgba(49,49,49,0.01));
 }
 
-.nav-itemns {
+.nav-items {
     display: flex;
     gap: 16px;
-    align-items: end;
+    align-items: center;
     justify-content: space-evenly;
     text-align: end;
     height: 100%;
 }
-.nav-itemns li,a {
-    
+.nav-items li,a {
     color: aliceblue;
     text-transform: uppercase;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     transition: 0.5 ease-in;
 }
 
-.nav-itemns li:hover, a:hover {
+.nav-items li:hover, a:hover {
     color: #00ba38;
     cursor: pointer;
     transform: scale(1.05);

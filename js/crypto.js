@@ -74,11 +74,15 @@ function viewDetails(coinId) {
 
 function toggleFavorite(id, name, symbol, price) {
     const favoriteIndex = favorites.findIndex(coin => coin.id === id);
+    
 
     if (favoriteIndex > -1) {
         favorites.splice(favoriteIndex, 1); // Remove dos favoritos
     } else {
         favorites.push({ id, name, symbol, price }); // Adiciona aos favoritos
+
+        var favoritesString = JSON.stringify(favorites);
+        localStorage.setItem('favorites', favoritesString);
     }
 }
 

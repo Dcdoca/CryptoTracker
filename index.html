@@ -1,155 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>início - CryptoTraker</title>
-    <link rel="stylesheet" href="./css/global.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="icon" href="./img/icons8-peercoin-48.png" type="image/x-icon">
-</head>
-<body>
-    <div class="site-container">
-        <header class="header">
-            <nav >
-                <div></div>
-                <ul class="nav-itemns">
-                    <li>
-                        <img class="logo" src="./img/icons8-peercoin-48.png" alt="">
-                    </li>
-                    <li>
-                        <a href="">Cryptos Favoritas</a>
-                    </li>
-                    <li>
-                        <a href="">Trocas</a>
-                    </li>
-                    <li>
-                        <a href="">NFT</a>
-                    </li>
-                    <li>
-                        <a href="">Portfolio</a>
-                    </li>
-                    <li>
-                        <a href="">Watchlist</a>
-                    </li>
-                    <li><img src="./img/1486564400-account_81513 (1).png" alt=""></li>
-                </ul>
-            </nav>
-        </header>
-        <main>
-            <aside class="sidebar">
-                <div class="sidebar-nav">
-                    <img src="" alt="">
-                    <div class="content">
-                        <bold>Portifólio</bold>
-                        <p>INSERIR PREÇO AQUI</p>
-                    </div>
-                </div>
 
-                <div class="sidebar-nav">
-                    <img src="" alt="">
-                    <div class="content">
-                        <bold>Portifólio Teste</bold>
-                        <p>INSERIR PREÇO AQUI</p>
-                        <button class="side-button">Criar Portifólio</button>
-                    </div>
-                </div>
-                <section class="pro">
-                    <img src="" alt="">
-                    <strong>Atualize para o Pro</strong>
-                    <p>Abra opções </p>
-                    <button class="pro-button">
-                        ADQUIRA O PRO
-                    </button>
-                </section>
-            </aside>
-
-            <section class="graphic">
-                <header class="graphic-header">
-                    <div>
-                        <b>INSERIR DINHEIRO AQUI</b>
-                        <p>INSERIR LUCRO AQUI</p>
-                    </div>
-                    <canvas id="myChart"></canvas>
-                </header>
-            <section class="crypto-table">
-
-
-                <article class="graphic">
-                    <header class="graphic-header">
-                        <div class="chart">
-                            <h2>Grafico de Criptos</h2>
-                            <div class="options-chart">
-                                <button>Gráfico</button>
-                                <button>Alocação</button>
-                                <button>Estatística</button>
-                                <!-- <div class="options-time">
-                                    <button >24H</button>
-                                    <button>7D</button>
-                                    <button>30D</button>
-                                    <button>90D</button>
-                                    <button>ALL</button>
-                                </div> -->
-                            </div>
-                            <canvas id="meuGrafico" width="1600" height="500"></canvas>
-                             <script>
-        var ctx = document.getElementById('meuGrafico').getContext('2d');
-        var meuGrafico = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
-                datasets: [{
-                    label: 'Criptomoedas',
-                    data: [65, 59, 80, 81, 56, 55],
-                    borderColor: '#00ba38',
-                    borderWidth: 2,
-                    fill: false
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    </script>
-                        </div>
-                    </header>
-                </article>
-                <footer>
-                    <div class="footer-content">
-                        <header class="footer-header">
-                            <ul>
-                                <li><a href="">Nome</a></li>
-                                <li><a href="">Preço</a></li>
-                                <li><a href="">24h</a></li>
-                                <li><a href="">Holdings</a></li>
-                                <li><a href="">AVG. Buy Price</a></li>
-
-                            </ul>
-                        </header>
-                        <div class="cryptos-tab">
-                            <li>
-                                <img src="" alt="">
-                                <p>Nome</p>
-                                <p>Preço</p>
-                                <p>Variação 24hrs</p>
-                            </li>
-                        </div>
-                    </div>
-                </footer>
+    <link rel="icon" href="./img/icons8-peercoin-48.png" type="image/x-icon" />
+  </head>
+  <body>
+      <header class="header">
+        <nav>
+          <div></div>
+          <ul class="nav-itemns">
+            <li>
+              <img class="logo" src="./img/icons8-peercoin-48.png" alt="" />
+            </li>
+            <li>
+              <a href="">Cryptos Favoritas</a>
+            </li>
+            <li>
+              <a href="">Trocas</a>
+            </li>
+            <li>
+              <a href="">NFT</a>
+            </li>
+            <li>
+              <a href="">Portfolio</a>
+            </li>
+            <li>
+              <a href="">Watchlist</a>
+            </li>
+            <li><img src="./img/1486564400-account_81513 (1).png" alt="" /></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <div class="layout-container">
+          <aside class="sidebar">
+            <div class="sidebar-nav">
+              <img src="" alt="" />
+              <div class="content">
+                <bold>Portifólio</bold>
+                <p>INSERIR PREÇO AQUI</p>
+              </div>
+            </div>
+            <div class="sidebar-nav">
+              <img src="" alt="" />
+              <div class="content">
+                <bold>Portifólio Teste</bold>
+                <p>INSERIR PREÇO AQUI</p>
+                <button class="side-button">Criar Portifólio</button>
+              </div>
+            </div>
+            <section class="pro">
+              <img src="" alt="" />
+              <strong>Atualize para o Pro</strong>
+              <p>Abra opções</p>
+              <button class="pro-button">ADQUIRA O PRO</button>
             </section>
-        </main>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+          </aside>
+          <div class="crypto-table">
+            <div id="content"></div>
+          </div>
+        </div> 
+      </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart.js para gráficos -->
     <script src="./js/crypto.js"></script>
-
-</body>
-
+    <!-- Seu arquivo JavaScript -->
+  </body>
 </html>

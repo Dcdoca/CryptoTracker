@@ -1,8 +1,8 @@
 
 console.log("application started")
 const API_URL = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false";
-let favorites = [];
-
+var favorites = [];
+const DB_KEY = "@favorites"
 document.addEventListener("DOMContentLoaded", () => {
     loadHome();
     loadFavorites();
@@ -25,8 +25,7 @@ function loadHome() {
                 li.innerHTML = `
                     <span>${coin.name} (${coin.symbol.toUpperCase()}): $${coin.current_price}</span>
                     <button onclick="viewDetails('${coin.id}')">Ver Detalhes</button>
-                    <button onclick="toggleFavorite('${coin.id}', '${coin.name}', '${coin.symbol}', ${coin.current_price})">★</button>
-                `;
+                    <button onclick="toggleFavorite('${coin.id}', '${coin.name}', '${coin.symbol}', ${coin.current_price})">★</button>`;
                 ul.appendChild(li);
             });
 
@@ -50,7 +49,7 @@ function viewDetails(coinId) {
                 <canvas id="priceChart" width="1400" height="500"></canvas>
                 <button class = "button-voltar" onclick="loadHome()">Voltar</button>
             `;
-
+            
             const ctx = document.getElementById('priceChart').getContext('2d');
             const chart = new Chart(ctx, {
                 type: 'line',
@@ -68,45 +67,84 @@ function viewDetails(coinId) {
                     }]
                 }
             });
+            console.log(coin)
         })
         .catch(error => console.error('Erro ao carregar detalhes da criptomoeda:', error));
 }
 
 function toggleFavorite(id, name, symbol, price) {
     const favoriteIndex = favorites.findIndex(coin => coin.id === id);
-    
 
     if (favoriteIndex > -1) {
         favorites.splice(favoriteIndex, 1); // Remove dos favoritos
     } else {
         favorites.push({ id, name, symbol, price }); // Adiciona aos favoritos
-
-        var favoritesString = JSON.stringify(favorites);
-        localStorage.setItem('favorites', favoritesString);
     }
+    localStorage.setItem(DB_KEY, JSON.stringify(favorites))
 }
 
 function loadFavorites() {
-    const content2 = document.getElementById('content2');
-    content2.innerHTML = '<h2>Favoritos</h2>';
+    
 
-    if (favorites.length === 0) {
-        content2.innerHTML += '<p>Nenhuma criptomoeda favorita.</p>';
-        return;
-    }
+//     const criptofavorites = document.getElementById('criptofavorites');
+//     criptofavorites.innerHTML = '<h2>Favoritos</h2>';
 
-    const ul = document.createElement('ul');
-    ul.className = 'crypto-favorites';
-    favorites.forEach(coin => {
-        const li = document.createElement('li');
-        li.innerHTML = `
-            <span>${coin.name} (${coin.symbol.toUpperCase()}): $${coin.price}</span>
-            <button onclick="viewDetails('${coin.id}')">Ver Detalhes</button>
-            <button onclick="toggleFavorite('${coin.id}', '${coin.name}', '${coin.symbol}', ${coin.price})">★</button>
-        `;
-        ul.appendChild(li);
-    });
+//     if (favorites.length === 0) {
+//         criptofavorites.innerHTML += '<p>Nenhuma criptomoeda favorita.</p>';
+//         return;
+//     }
+//     if (storage) {
+//     favorites = JSON.parse(storage); // Recupera favoritos do localStorage
+//     } else {
+//     favorites = []; // Caso contrário, inicializa com uma lista vazia
+//     }
 
-    content.appendChild(ul);
+
+// const ul = document.createElement('ul');
+// ul.className = 'crypto-favorites'; 
+
+// favorites.forEach(coin => {
+//     const li = document.createElement('li');
+//     li.innerHTML = `
+//         <span>${coin.name} (${coin.symbol.toUpperCase()}): $${coin.price}</span>`;
+//     ul.appendChild(li);
+// });
+
+// document.getElementById('criptofavorites').appendChild(ul);
+
+// // Salva os favoritos atualizados no localStorage
+// localStorage.setItem(DB_KEY, JSON.stringify(favorites));
+// Obtém o contêiner onde os favoritos serão exibidos
+const criptofavorites = document.getElementById('criptofavorites');
+
+
+// Recupera favoritos do localStorage ou inicializa uma lista vazia
+const storage = localStorage.getItem(DB_KEY);
+let favorites = storage ? JSON.parse(storage) : [];
+
+// Verifica se há favoritos
+if (favorites.length === 0) {
+    criptofavorites.innerHTML += '<p>Nenhuma criptomoeda favorita.</p>';
+    return; // Encerra a função se não houver favoritos
 }
 
+// Cria uma lista de favoritos
+const ul = document.createElement('ul');
+ul.className = 'crypto-favorites'; 
+
+// Adiciona cada criptomoeda favorita à lista
+favorites.forEach(coin => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+        <span>${coin.name} (${coin.symbol.toUpperCase()}): $${coin.price}</span>`;
+    ul.appendChild(li);
+});
+
+// Anexa a lista ao contêiner de favoritos
+criptofavorites.appendChild(ul);
+
+// Atualiza o localStorage com a lista de favoritos (se necessário)
+localStorage.setItem(DB_KEY, JSON.stringify(favorites));
+
+}
+loadFavorites()

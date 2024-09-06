@@ -34,39 +34,57 @@ function loadHome() {
 }
 
 function viewDetails(coinId) {
-    const url = `https://api.coingecko.com/api/v3/coins/${coinId}`;
+    const url = `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=30&interval=daily`;
 
     fetch(url)
         .then(response => response.json())
         .then(data => {
+            // Obtendo o histórico de preços
+            const prices = data.prices;
+            const labels = prices.map(price => new Date(price[0]).toLocaleDateString());
+            const chartData = prices.map(price => price[1]);
+
+            // Atualizando o conteúdo da página
             const content = document.getElementById('content');
             content.innerHTML = `
-                <h2>${data.name} (${data.symbol.toUpperCase()})</h2>
-                <p>Preço Atual: $${data.market_data.current_price.usd}</p>
-                <p>Maior preço de todos os tempos: $${data.market_data.ath.usd}</p>
-                <p>Menor preço de todos os tempos: $${data.market_data.atl.usd}</p>
+                <h2>${coinId.toUpperCase()}</h2>
                 <canvas id="priceChart" width="1400" height="500"></canvas>
-                <button class = "button-voltar" onclick="loadHome()">Voltar</button>
+                <button class="button-voltar" onclick="loadHome()">Voltar</button>
             `;
 
+            // Configurando o gráfico com os dados obtidos
             const ctx = document.getElementById('priceChart').getContext('2d');
-            const chart = new Chart(ctx, {
+            new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    labels: labels,
                     datasets: [{
-                        label: 'Preço (USD)',
-                        data: [30, 50, 60, 45, 50, 70, 90, 100, 80, 60, 70, 110, 120],
+                        label: `Preço de ${coinId.toUpperCase()} (USD)`,
+                        data: chartData,
                         borderColor: 'rgba(0, 186, 56, 1)',
-
                         fill: {
                             target: 'origin',
-                            above: 'rgba(0, 186, 56, 0.02)'  // Area will be red above the origin
+                            above: 'rgba(0, 186, 56, 0.1)' // Área preenchida acima da linha
                         }
                     }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Data'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Preço (USD)'
+                            }
+                        }
+                    }
                 }
             });
-            console.log(coin)
         })
         .catch(error => console.error('Erro ao carregar detalhes da criptomoeda:', error));
 }

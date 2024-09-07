@@ -80,6 +80,24 @@ function toggleFavorite(id, name, symbol, price) {
     } else {
         favorites.push({ id, name, symbol, price }); // Adiciona aos favoritos
     }
+    function toggleFavorite(id, name, symbol, price) {
+    const favoriteIndex = favorites.findIndex(coin => coin.id === id);
+
+    if (favoriteIndex > -1) {
+        // Remove dos favoritos
+        favorites.splice(favoriteIndex, 1);
+    } else {
+        // Adiciona aos favoritos
+        favorites.push({ id, name, symbol, price });
+    }
+
+    // Atualiza o LocalStorage com a nova lista de favoritos
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+
+    // Atualiza a lista de criptomoedas na tela (opcional, caso queira exibir imediatamente a mudança)
+    loadHome();
+}
+
 }
 
 function loadFavorites() {
